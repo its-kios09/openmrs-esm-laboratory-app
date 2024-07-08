@@ -100,6 +100,11 @@ export const rejectLabRequestAction = getAsyncLifecycle(
   options
 );
 
+export const returnPatientBackToQueueAction = getAsyncLifecycle(
+  () => import("./lab-tabs/actions/send-patient-back-action.component"),
+  options
+);
+
 export function startupApp() {
   defineConfigSchema(moduleName, configSchema);
 }

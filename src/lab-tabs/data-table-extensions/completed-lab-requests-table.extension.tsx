@@ -5,8 +5,8 @@ const CompletedLabRequestsTable: React.FC = () => {
   return (
     <OrdersDataTable
       fulfillerStatus="COMPLETED"
-      excludeColumns={["actions", "action"]}
       excludeCanceledAndDiscontinuedOrders={false}
+      actionsSlotName="send-patient-back-actions-slot"
     />
   );
 };
