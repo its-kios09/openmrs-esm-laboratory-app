@@ -12,7 +12,6 @@ const ReturnPatientBackToQueueAction: React.FC = () => {
   return (
     <OverflowMenuItem
       itemText={t("sendBackPatient", "Send Back Patient")}
-      //disabled={unSupportedStatuses.includes(order.fulfillerStatus)}
       className={styles.menuItem}
     />
   );
