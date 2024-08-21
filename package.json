@@ -45,7 +45,8 @@
   "dependencies": {
     "@carbon/react": "^1.14.0",
     "lodash-es": "^4.17.21",
-    "react-hook-form": "^7.52.1"
+    "react-hook-form": "^7.52.1",
+    "react-to-print": "^2.14.13"
   },
   "peerDependencies": {
     "@openmrs/esm-framework": "*",

@@ -65,22 +65,29 @@ const OrdersDataTable: React.FC<OrdersDataTableProps> = (props) => {
   function groupOrdersById(orders) {
     if (orders && orders.length > 0) {
       const groupedOrders = orders.reduce((acc, item) => {
-        if (!acc[item.patientUuid]) {
-          acc[item.patientUuid] = [];
+        const { patientUuid, patientName } = item;
+
+        if (!acc[patientUuid]) {
+          acc[patientUuid] = {
+            patientName: patientName,
+            orders: [],
+          };
         }
-        acc[item.patientUuid].push(item);
+        acc[patientUuid].orders.push(item);
         return acc;
       }, {});
 
-      // Convert the result to an array of objects with patientId and orders
+      // Convert the result to an array of objects with patientId, patientName, and orders
       return Object.keys(groupedOrders).map((patientId) => ({
         patientId: patientId,
-        orders: groupedOrders[patientId],
+        patientName: groupedOrders[patientId].patientName,
+        orders: groupedOrders[patientId].orders,
       }));
     } else {
       return [];
     }
   }
+
   const groupedOrdersByPatient = groupOrdersById(flattenedLabOrders);
   const searchResults = useSearchGroupedResults(groupedOrdersByPatient, searchString);
 
@@ -204,6 +211,8 @@ const OrdersDataTable: React.FC<OrdersDataTableProps> = (props) => {
             </TableHead>
             <TableBody>
               {rows.map((row, index) => {
+                const { patientName } = groupedOrdersByPatient.find((item) => item.patientId === row.id);
+
                 return (
                   <React.Fragment key={row.id}>
                     <TableExpandRow {...getRowProps({ row })} key={row.id}>
@@ -216,6 +225,7 @@ const OrdersDataTable: React.FC<OrdersDataTableProps> = (props) => {
                         <ListOrderDetails
                           actions={props.actions}
                           groupedOrders={groupedOrdersByPatient.find((item) => item.patientId === row.id)}
+                          patientName={patientName}
                         />
                       </TableExpandedRow>
                     ) : (

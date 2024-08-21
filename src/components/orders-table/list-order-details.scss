@@ -32,8 +32,11 @@
   min-height: 3rem !important;
   padding-left: 10px !important;
   margin: auto;
+  margin-top: layout.$spacing-04;
 }
-
+.order__table {
+  margin-top: layout.$spacing-07;
+}
 .orderPropertyDisplay {
   font-size: 15px !important;
 }
@@ -53,7 +56,8 @@
   display: flex;
   justify-content: flex-end;
   margin-left: layout.$spacing-05;
-  margin-top: layout.$spacing-07;
+  margin-top: layout.$spacing-04;
+  margin-bottom: layout.$spacing-07;
 
   > * + * {
     margin-left: layout.$spacing-03;

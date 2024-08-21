@@ -10,8 +10,8 @@ export interface GroupedOrders {
 export interface ListOrdersDetailsProps {
   groupedOrders: GroupedOrders;
   actions: Array<OrderAction>;
+  patientName: string;
 }
-
 export interface OrderAction {
   actionName: string;
   order: 0 | number;

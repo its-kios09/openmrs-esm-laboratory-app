@@ -9,7 +9,8 @@ const TestsOrderedTable: React.FC = () => {
       useFilter
       actions={[
         { actionName: 'pickupLabRequest', order: 0 },
-        { actionName: 'rejectLabRequest', order: 1 },
+        { actionName: 'printOrder', order: 1 },
+        { actionName: 'rejectLabRequest', order: 2 },
       ]}
     />
   );
