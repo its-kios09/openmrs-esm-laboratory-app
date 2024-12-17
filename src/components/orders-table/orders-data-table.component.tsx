@@ -47,6 +47,7 @@ const OrdersDataTable: React.FC<OrdersDataTableProps> = (props) => {
         patientName: order.patient?.display.split('-')[1],
         patientUuid: order.patient?.uuid,
         patientAge: order.patient?.person?.age,
+        patientGender: order.patient?.person?.gender,
         status: order.fulfillerStatus ?? '--',
         orderer: order.orderer,
       };
@@ -114,8 +115,9 @@ const OrdersDataTable: React.FC<OrdersDataTableProps> = (props) => {
   const columns = useMemo(() => {
     return [
       { id: 0, header: t('patient', 'Patient'), key: 'patientName' },
-      { id: 1, header: t('age', 'Age'), key: 'patientAge' },
-      { id: 2, header: t('totalOrders', 'Total Orders'), key: 'totalOrders' },
+      { id: 1, header: t('gender', 'Gender'), key: 'patientGender' },
+      { id: 2, header: t('age', 'Age'), key: 'patientAge' },
+      { id: 3, header: t('totalOrders', 'Total Orders'), key: 'totalOrders' },
     ];
   }, [t]);
 
@@ -132,6 +134,7 @@ const OrdersDataTable: React.FC<OrdersDataTableProps> = (props) => {
       orders: order.orders,
       totalOrders: order.orders?.length,
       patientAge: order.orders[0].patient?.person?.age,
+      patientGender: order.orders[0].patient?.person?.gender,
     }));
   }, [paginatedLabOrders]);
 

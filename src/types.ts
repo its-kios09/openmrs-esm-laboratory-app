@@ -30,3 +30,30 @@ export type DateFilterContext = {
   dateRange: Array<Date>;
   setDateRange: React.Dispatch<React.SetStateAction<Array<Date>>>;
 };
+
+export interface Person {
+  uuid: string;
+  age: number;
+  dead: boolean;
+  display: string;
+  causeOfDeath: string;
+  gender: string;
+  deathDate: string;
+  attributes: {
+    uuid: string;
+    display: string;
+    value: string;
+    attributeType: {
+      uuid: string;
+      display: string;
+    };
+  }[];
+}
+
+export interface Patient {
+  uuid: string;
+  person: Person;
+  identifiers: {
+    uuid: string;
+  }[];
+}

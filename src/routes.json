@@ -112,5 +112,13 @@
       "component": "rejectLabRequestAction",
       "slot": "inprogress-tests-actions-slot"
     }
+  ],
+   "workspaces": [
+    {
+      "name": "add-order-lab-form",
+      "component": "addLabOrder",
+      "title": "Request lab order",
+      "type": "other-form"
+    }
   ]
 }

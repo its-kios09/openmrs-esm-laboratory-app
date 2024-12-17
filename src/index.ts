@@ -86,6 +86,9 @@ export const editLabRequestAction = getAsyncLifecycle(
   options,
 );
 
+// Workspace
+export const addLabOrder = getAsyncLifecycle(() => import('./components/workspace/add-order-lab.workspace'), options);
+
 export function startupApp() {
   defineConfigSchema(moduleName, configSchema);
 }

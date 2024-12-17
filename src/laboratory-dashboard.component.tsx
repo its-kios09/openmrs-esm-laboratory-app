@@ -7,6 +7,7 @@ import LaboratoryOrdersTabs from './lab-tabs/laboratory-tabs.component';
 import LaboratorySummaryTiles from './lab-tiles/laboratory-summary-tiles.component';
 import styles from './laboratory-dashboard.scss';
 import { type DateFilterContext } from './types';
+import MetricsHeader from './components/header/laboratory-header.component';
 
 const LaboratoryDashboard: React.FC = () => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ const LaboratoryDashboard: React.FC = () => {
         className={styles.pageHeader}
       />
       <div>
+        <MetricsHeader />
         <LaboratorySummaryTiles />
         <LaboratoryOrdersTabs />
         <Overlay />
