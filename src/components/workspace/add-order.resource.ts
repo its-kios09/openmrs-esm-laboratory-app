@@ -19,7 +19,7 @@ export async function fetchPatientsWithActiveVisits(query: string, abortControll
   const activePatients = await Promise.all(
     patients.map(async (patient) => {
       const visitResponse = await openmrsFetch<{ results: Array<Visit> }>(
-        `${restBaseUrl}/visit?patient=${patient.uuid}&v=custom:(uuid,visitType,stopDatetime)`,
+        `${restBaseUrl}/visit?patient=${patient.uuid}&v=full`,
         { signal: abortController.signal },
       );
       const activeVisit = visitResponse?.data?.results.find((visit) => !visit.stopDatetime);

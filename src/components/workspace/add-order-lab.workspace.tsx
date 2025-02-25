@@ -9,7 +9,12 @@ import { Autosuggest } from '../autosuggest/autosuggest.component';
 import PatientSearchInfo from '../autosuggest/patient-search-info.component';
 import SearchEmptyState from '../autosuggest/search-empty-state.component';
 import { fetchPatientsWithActiveVisits } from './add-order.resource';
-import { launchWorkspace } from '@openmrs/esm-framework';
+import { launchWorkspace, navigate, navigateAndLaunchWorkspace } from '@openmrs/esm-framework';
+import {
+  launchPatientChartWithWorkspaceOpen,
+  launchPatientWorkspace,
+  useLaunchWorkspaceRequiringVisit,
+} from '@openmrs/esm-patient-common-lib';
 
 const schema = z.object({
   activeVisitPatient: z.string().nonempty('Patient selection is required').uuid('Invalid patient selection'),
@@ -25,7 +30,6 @@ const AddLabOrderForm: React.FC = () => {
 
     return await fetchPatientsWithActiveVisits(query, abortController);
   };
-
   const form = useForm<AddLabOrderFormInputs>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -36,9 +40,9 @@ const AddLabOrderForm: React.FC = () => {
   const { handleSubmit, control, formState } = form;
 
   const launchLabOrderWorkspace = (patientUuid: string) => {
-    launchWorkspace('order-basket', {
-      patientUuid,
-    });
+    const patientChartUrl = '${openmrsSpaBase}/patient/' + `${patientUuid}/chart`;
+    navigate({ to: patientChartUrl });
+    launchWorkspace('order-basket', { patientUuid });
   };
 
   const onSuggestionSelected = (value: string) => {
@@ -80,5 +84,4 @@ const AddLabOrderForm: React.FC = () => {
     </Form>
   );
 };
-
 export default AddLabOrderForm;
